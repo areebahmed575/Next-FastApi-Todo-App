@@ -1,4 +1,3 @@
-// Todo.tsx
 import React, { useState } from 'react';
 
 interface TodoProps {
@@ -19,7 +18,7 @@ const Todo: React.FC<TodoProps> = ({ id, message, status, onDelete, onUpdate }) 
   };
 
   return (
-    <div className="flex items-center justify-between p-2 border-b border-gray-300">
+    <div className="flex items-center justify-between p-2 border-b border-gray-300 mt-7">
       {isEditing ? (
         <input
           type="text"

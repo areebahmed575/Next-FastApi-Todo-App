@@ -23,7 +23,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
         placeholder="Add Todo..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        className="px-2 py-1 border border-gray-300"
+        className="px-2 py-1 border border-gray-300 w-96  rounded-lg"
       />
       <button type="submit" className="ml-2 px-3 py-1 bg-blue-500 text-white rounded">
         Add

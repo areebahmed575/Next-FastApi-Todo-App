@@ -1,5 +1,5 @@
 'use client'
-// TodoApp.tsx
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TodoList from './TodoList';
@@ -47,7 +47,7 @@ const TodoApp: React.FC = () => {
 
   const updateTodo = async (id: number, updatedMessage: string) => {
     try {
-      const response = await axios.put(`/api/update_todo/${id}`, { message: updatedMessage });
+      const response = await axios.put(`/api/update_todo/${id}`, { message: updatedMessage, status: false});
       const updatedTodos = todos.map(todo => {
         if (todo.id === id) {
           return { ...todo, message: updatedMessage };
@@ -61,11 +61,18 @@ const TodoApp: React.FC = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-8 p-4">
-      <h1 className="text-2xl font-bold mb-4">Todo App</h1>
-      <TodoForm onAdd={addTodo} />
-      <TodoList todos={todos} onDelete={deleteTodo} onUpdate={updateTodo} />
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-500 flex justify-center items-center">
+    <div className="max-w-lg mx-auto p-4 bg-slate-50 rounded-lg shadow-lg">
+      <h1 className="text-3xl font-bold mb-7 text-center">📝 Todo App</h1>
+      <div className="mb-4">
+        <TodoForm onAdd={addTodo} />
+      </div>
+      <div>
+        <TodoList todos={todos} onDelete={deleteTodo} onUpdate={updateTodo} />
+      </div>
     </div>
+  </div>
+  
   );
 };
 
