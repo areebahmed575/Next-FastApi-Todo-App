@@ -3,5 +3,6 @@ uvicorn[standard]==0.23.2
 pydantic
 sqlalchemy
 requests
+psycopg2
 python-dotenv
 axios
