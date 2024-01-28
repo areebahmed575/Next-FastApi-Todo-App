@@ -16,8 +16,9 @@ const TodoApp: React.FC = () => {
 
   useEffect(() => {
     fetchTodos();
+    
   }, []);
-
+     
   const fetchTodos = async () => {
     try {
       const response = await axios.get('/api/todo');
@@ -30,35 +31,30 @@ const TodoApp: React.FC = () => {
   const addTodo = async (message: string) => {
     try {
       const response = await axios.post('/api/addTodo', { message, status: false });
-      setTodos([...todos, response.data]);
+      fetchTodos(); // Fetch updated list of todos after addition
     } catch (error) {
       console.error('Error adding todo:', error);
     }
   };
-
+  
   const deleteTodo = async (id: number) => {
     try {
       await axios.delete(`/api/delete_todo/${id}`);
-      setTodos(todos.filter((todo) => todo.id !== id));
+      fetchTodos(); // Fetch updated list of todos after deletion
     } catch (error) {
       console.error('Error deleting todo:', error);
     }
   };
-
+  
   const updateTodo = async (id: number, updatedMessage: string) => {
     try {
-      const response = await axios.put(`/api/update_todo/${id}`, { message: updatedMessage, status: false});
-      const updatedTodos = todos.map(todo => {
-        if (todo.id === id) {
-          return { ...todo, message: updatedMessage };
-        }
-        return todo;
-      });
-      setTodos(updatedTodos);
+      await axios.put(`/api/update_todo/${id}`, { message: updatedMessage, status: false });
+      fetchTodos(); // Fetch updated list of todos after update
     } catch (error) {
       console.error('Error updating todo:', error);
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-500 flex justify-center items-center">
@@ -72,8 +68,8 @@ const TodoApp: React.FC = () => {
       </div>
     </div>
   </div>
-  
   );
 };
 
 export default TodoApp;
+
