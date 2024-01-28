@@ -31,7 +31,7 @@ const TodoApp: React.FC = () => {
   const addTodo = async (message: string) => {
     try {
       const response = await axios.post('/api/addTodo', { message, status: false });
-      fetchTodos(); // Fetch updated list of todos after addition
+      fetchTodos(); 
     } catch (error) {
       console.error('Error adding todo:', error);
     }
@@ -40,7 +40,7 @@ const TodoApp: React.FC = () => {
   const deleteTodo = async (id: number) => {
     try {
       await axios.delete(`/api/delete_todo/${id}`);
-      fetchTodos(); // Fetch updated list of todos after deletion
+      fetchTodos();
     } catch (error) {
       console.error('Error deleting todo:', error);
     }
@@ -49,7 +49,7 @@ const TodoApp: React.FC = () => {
   const updateTodo = async (id: number, updatedMessage: string) => {
     try {
       await axios.put(`/api/update_todo/${id}`, { message: updatedMessage, status: false });
-      fetchTodos(); // Fetch updated list of todos after update
+      fetchTodos(); 
     } catch (error) {
       console.error('Error updating todo:', error);
     }
